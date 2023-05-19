@@ -25,7 +25,7 @@ public class ItemStorageInMemory {
 
         Item itemCopy = null;
         for (Item item1 : items.values()) {
-            if (item1.getOwnerId() == idUser) {
+            if (Objects.equals(item1.getOwnerId(), idUser)) {
                 itemCopy = item1;
             }
         }
@@ -52,7 +52,7 @@ public class ItemStorageInMemory {
     public Collection<Item> getAllItems(Integer idUser) {
         List<Item> itemList = new ArrayList<>();
         for (Item item : items.values()) {
-            if (item.getOwnerId() == idUser) {
+            if (Objects.equals(item.getOwnerId(), idUser)) {
                 itemList.add(item);
             }
         }
@@ -78,7 +78,7 @@ public class ItemStorageInMemory {
     public void checkItemWithIdUser(Integer idUser) {
         boolean foundIdUser = false;
         for (Item item1 : items.values()) {
-            if (item1.getOwnerId() == idUser) {
+            if (Objects.equals(item1.getOwnerId(), idUser)) {
                 foundIdUser = true;
                 break;
             }
