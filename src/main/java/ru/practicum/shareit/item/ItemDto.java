@@ -1,4 +1,4 @@
-package ru.practicum.shareit.item.dto;
+package ru.practicum.shareit.item;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import lombok.Data;
 @Builder
 public class ItemDto {
 
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     @JsonInclude(JsonInclude.Include.NON_NULL)

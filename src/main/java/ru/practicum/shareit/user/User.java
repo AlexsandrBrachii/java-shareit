@@ -1,5 +1,6 @@
-package ru.practicum.shareit.user.model;
+package ru.practicum.shareit.user;
 
+import lombok.Builder;
 import lombok.Data;
 
 
@@ -8,9 +9,10 @@ import lombok.Data;
  */
 
 @Data
+@Builder
 public class User {
 
-    private int id;
+    private Integer id;
     private String name;
     private String email;
 }

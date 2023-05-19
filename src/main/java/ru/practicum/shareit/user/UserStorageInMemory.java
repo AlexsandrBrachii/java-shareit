@@ -1,10 +1,7 @@
-package ru.practicum.shareit.user.storage;
-
+package ru.practicum.shareit.user;
 
 import org.springframework.stereotype.Component;
 import ru.practicum.shareit.exception.ValidationException;
-import ru.practicum.shareit.user.model.User;
-
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,7 +10,7 @@ import java.util.HashMap;
 public class UserStorageInMemory {
 
     private static int idCounter = 0;
-    HashMap<Integer, User> users = new HashMap<>();
+    private HashMap<Integer, User> users = new HashMap<>();
 
     public User getUser(int userId) {
         return users.get(userId);

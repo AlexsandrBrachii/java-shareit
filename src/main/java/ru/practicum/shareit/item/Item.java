@@ -1,4 +1,4 @@
-package ru.practicum.shareit.item.model;
+package ru.practicum.shareit.item;
 
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.Data;
 @Builder
 public class Item {
 
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private Boolean available;
