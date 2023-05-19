@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.practicum.shareit.exception.NotFoundException;
+import ru.practicum.shareit.exception.ValidationException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,12 +39,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto createUser(UserDto userDto) {
+        validateUser(0, userDto.getEmail());
         User user = userStorage.createUser(userMapper.dtoToObject(userDto));
         return userMapper.objectToDto(user);
     }
 
     @Override
     public UserDto updateUser(int id, UserDto userDto) {
+        if (userDto.getEmail() != null) {
+            validateUser(id, userDto.getEmail());
+        }
         User user = userStorage.updateUser(id, userMapper.dtoToObject(userDto));
         return userMapper.objectToDto(user);
     }
@@ -51,5 +56,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(int userId) {
         userStorage.deleteUser(userId);
+    }
+
+    public void validateUser(int id, String email) {
+        if (email == null || !email.contains("@")) {
+            throw new ValidationException("Не корректный Email");
+        }
+        for (User existingUser : userStorage.getUsers()) {
+            if (existingUser.getEmail().equals(email) && existingUser.getId() != id) {
+                throw new RuntimeException("Email уже существует");
+            }
+        }
     }
 }

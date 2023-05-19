@@ -2,7 +2,6 @@ package ru.practicum.shareit.item;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import ru.practicum.shareit.exception.NotFoundException;
 
 import java.util.*;
 
@@ -13,16 +12,13 @@ public class ItemStorageInMemory {
     private static int idCounter = 0;
     private Map<Integer, Item> items = new HashMap<>();
 
-    public Item createItem(Integer idUser, Item item) {
+    public Item createItem(Item item) {
         item.setId(++idCounter);
-        item.setOwnerId(idUser);
         items.put(item.getId(), item);
         return item;
     }
 
     public Item updateItem(Integer idUser, Item item) {
-        checkItemWithIdUser(idUser);
-
         Item itemCopy = null;
         for (Item item1 : items.values()) {
             if (Objects.equals(item1.getOwnerId(), idUser)) {
@@ -45,7 +41,7 @@ public class ItemStorageInMemory {
         return itemCopy;
     }
 
-    public Item getItemById(Integer idUser, int idItem) {
+    public Item getItemById(Integer idItem) {
         return items.get(idItem);
     }
 
@@ -75,16 +71,7 @@ public class ItemStorageInMemory {
         return itemCollection;
     }
 
-    public void checkItemWithIdUser(Integer idUser) {
-        boolean foundIdUser = false;
-        for (Item item1 : items.values()) {
-            if (Objects.equals(item1.getOwnerId(), idUser)) {
-                foundIdUser = true;
-                break;
-            }
-        }
-        if (!foundIdUser) {
-            throw new NotFoundException(String.format("У пользователя с id=%s не найдено вещей", idUser));
-        }
+    public Collection<Item> getItems() {
+        return items.values();
     }
 }
