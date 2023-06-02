@@ -2,6 +2,8 @@ package ru.practicum.shareit.item;
 
 import org.springframework.stereotype.Component;
 import ru.practicum.shareit.booking.dto.BookingShort;
+import ru.practicum.shareit.item.comment.Comment;
+import ru.practicum.shareit.item.comment.CommentMapper;
 import ru.practicum.shareit.item.dto.ItemBookingDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 
