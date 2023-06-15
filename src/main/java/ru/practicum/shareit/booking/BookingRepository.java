@@ -50,38 +50,38 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     List<Booking> findAllByItemOwner_IdOrderByStartDesc(Long ownerId);
 
     // для ALL
-    List<Booking> findAllByBookerIdOrderByStartDesc(Long bookerId);
+    List<Booking> findAllByBookerIdOrderByStartDesc(Long bookerId, Pageable pageable);
 
     // для ALL если owner
-    List<Booking> findAllByItemOwnerIdOrderByStartDesc(Long ownerId);
+    List<Booking> findAllByItemOwnerIdOrderByStartDesc(Long ownerId, Pageable pageable);
 
     // для FUTURE
-    List<Booking> findAllByBookerIdAndStartAfterOrderByStartDesc(Long bookerId, LocalDateTime dateTime);
+    List<Booking> findAllByBookerIdAndStartAfterOrderByStartDesc(Long bookerId, LocalDateTime dateTime, Pageable pageable);
 
     // для FUTURE если owner
-    List<Booking> findAllByItemOwnerIdAndStartAfterOrderByStartDesc(Long ownerId, LocalDateTime dateTime);
+    List<Booking> findAllByItemOwnerIdAndStartAfterOrderByStartDesc(Long ownerId, LocalDateTime dateTime, Pageable pageable);
 
     // для WAITING
-    List<Booking> findAllByBookerIdAndStatusEqualsOrderByStartDesc(Long bookerId, BookingStatus status);
+    List<Booking> findAllByBookerIdAndStatusEqualsOrderByStartDesc(Long bookerId, BookingStatus status, Pageable pageable);
 
     // для WAITING если owner
-    List<Booking> findAllByItemOwnerIdAndStatusEqualsOrderByStartDesc(Long ownerId, BookingStatus status);
+    List<Booking> findAllByItemOwnerIdAndStatusEqualsOrderByStartDesc(Long ownerId, BookingStatus status, Pageable pageable);
 
     // для REJECTED
-    List<Booking> findAllByBookerIdAndStatusInOrderByStartDesc(Long bookerId, Set<BookingStatus> statusSet);
+    List<Booking> findAllByBookerIdAndStatusInOrderByStartDesc(Long bookerId, Set<BookingStatus> statusSet, Pageable pageable);
 
     // для REJECTED если owner
-    List<Booking> findAllByItemOwnerIdAndStatusInOrderByStartDesc(Long ownerId, Set<BookingStatus> statusSet);
+    List<Booking> findAllByItemOwnerIdAndStatusInOrderByStartDesc(Long ownerId, Set<BookingStatus> statusSet, Pageable pageable);
 
     // для CURRENT
-    List<Booking> findAllByBookerIdAndStartBeforeAndEndAfterOrderByStartDesc(Long bookerId, LocalDateTime now1, LocalDateTime now2);
+    List<Booking> findAllByBookerIdAndStartBeforeAndEndAfterOrderByStartDesc(Long bookerId, LocalDateTime now1, LocalDateTime now2, Pageable pageable);
 
     // для CURRENT если owner
-    List<Booking> findAllByItemOwnerIdAndStartBeforeAndEndAfterOrderByStartDesc(Long bookerId, LocalDateTime now1, LocalDateTime now2);
+    List<Booking> findAllByItemOwnerIdAndStartBeforeAndEndAfterOrderByStartDesc(Long bookerId, LocalDateTime now1, LocalDateTime now2, Pageable pageable);
 
     // для PAST
-    List<Booking> findAllByBookerIdAndEndBeforeOrderByStartDesc(Long bookerId, LocalDateTime now);
+    List<Booking> findAllByBookerIdAndEndBeforeOrderByStartDesc(Long bookerId, LocalDateTime now, Pageable pageable);
 
     // для PAST если owner
-    List<Booking> findAllByItemOwnerIdAndEndBeforeOrderByStartDesc(Long bookerId, LocalDateTime now);
+    List<Booking> findAllByItemOwnerIdAndEndBeforeOrderByStartDesc(Long bookerId, LocalDateTime now, Pageable pageable);
 }

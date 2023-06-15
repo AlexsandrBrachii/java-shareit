@@ -2,6 +2,7 @@ package ru.practicum.shareit.item.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -13,9 +14,10 @@ import javax.validation.constraints.Size;
  */
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class ItemDto {
 
+    @Setter
     private Long id;
 
     @NotBlank(message = "Название не может быть пустым или отсутствовать.")
@@ -28,5 +30,7 @@ public class ItemDto {
 
     @NotNull(message = "Одобрение должно быть указано.")
     private Boolean available;
+
+    private Long requestId;
 
 }

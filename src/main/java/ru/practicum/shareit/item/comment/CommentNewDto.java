@@ -1,10 +1,11 @@
 package ru.practicum.shareit.item.comment;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class CommentNewDto {
     private String text;
 }
