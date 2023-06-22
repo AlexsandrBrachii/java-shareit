@@ -9,11 +9,6 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Utils {
 
-    //Если id пользователя null, то вызываем исключение BadRequestException
-    public static void userIsNull(Long userId) {
-        if (userId == null) throw new BadRequestException("Не известен пользователь.");
-    }
-
     public static final DateTimeFormatter dtFormatter = DateTimeFormatter
             .ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 

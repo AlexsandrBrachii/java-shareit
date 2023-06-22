@@ -6,10 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingNewDto;
+import ru.practicum.shareit.exception.BadRequestException;
 import ru.practicum.shareit.utils.Utils;
 
 
 import java.util.List;
+
 
 /**
  * TODO Sprint add-bookings.
@@ -30,7 +32,7 @@ public class BookingController {
 
     @PatchMapping(value = "/{bookingId}", params = "approved")
     public BookingDto approve(@RequestHeader(value = "X-Sharer-User-Id") Long userId, @PathVariable Long bookingId,
-            @RequestParam boolean approved) {
+                              @RequestParam boolean approved) {
         return bookingService.approve(userId, approved, bookingId);
     }
 

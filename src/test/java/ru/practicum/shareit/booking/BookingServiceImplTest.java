@@ -192,20 +192,6 @@ public class BookingServiceImplTest {
                 .hasMessage("Бронирование уже имеет устанавливаемый статус.");
     }
 
-    /*@Test
-    void approve_NotOwner_ReturnNotFoundException() {
-
-        when(bookingRepoitory.findBookingForApprove(anyLong(), anyLong()))
-                .thenReturn(Optional.of(booking));
-
-        Throwable throwable = Assertions.catchException(() -> bookingService
-                .approve(1L, true, 1L));
-
-        Assertions.assertThat(throwable)
-                .isInstanceOf(ForbiddenException.class)
-                .hasMessage("У вас нет прав для изменения статуса бронирования.");
-    }*/
-
     @Test
     void approve_Normal_Approve() {
         when(bookingRepository.findBookingForApprove(anyLong(), anyLong()))

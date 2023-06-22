@@ -74,8 +74,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<BookingDto> getAllBookings(long userId, String stateS, int from, int size) {
-        State state = checkState(stateS);
+    public List<BookingDto> getAllBookings(long userId, String stateIn, int from, int size) {
+        State state = getState(stateIn);
         checkUser(userId);
         PageRequest pageRequest = getPageRequest(from, size);
         LocalDateTime now = LocalDateTime.now();
@@ -108,8 +108,8 @@ public class BookingServiceImpl implements BookingService {
 
 
     @Override
-    public List<BookingDto> getAllBookingsForOwner(long userId, String stateS, int from, int size) {
-        State state = checkState(stateS);
+    public List<BookingDto> getAllBookingsForOwner(long userId, String stateIn, int from, int size) {
+        State state = getState(stateIn);
         checkUser(userId);
         PageRequest pageRequest = getPageRequest(from, size);
         LocalDateTime now = LocalDateTime.now();
@@ -164,7 +164,7 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
-    private State checkState(String state) {
+    private State getState(String state) {
         try {
             return State.valueOf(state);
         } catch (IllegalArgumentException e) {

@@ -6,11 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.TestPropertySource;
 import ru.practicum.shareit.user.User;
 
 import java.util.List;
 
 @DataJpaTest
+@TestPropertySource(properties = { "db.name=test"})
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class ItemRepositoryTest {
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingNewDto;
@@ -18,11 +19,13 @@ import java.util.List;
 
 @Transactional
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@TestPropertySource(properties = { "db.name=test"})
 @SpringBootTest
-public class BookingIntegrationTest {
+public class BookingServiceIntegrationTest {
 
     private final EntityManager em;
     private final BookingService bookingService;
+    private final BookingRepository bookingRepository;
 
     private final LocalDateTime now = LocalDateTime.now();
 
@@ -60,10 +63,11 @@ public class BookingIntegrationTest {
 
         BookingDto created = bookingService.createBooking(userId, newBooking);
 
-        Assertions.assertThat(created).isNotNull()
-                .hasFieldOrPropertyWithValue("status", "WAITING")
-                .hasFieldOrPropertyWithValue("booker.id", userId)
-                .hasFieldOrPropertyWithValue("item.id", itemId);
+        Booking retrievedBooking = bookingRepository.findById(created.getId()).orElse(null);
+        Assertions.assertThat(retrievedBooking).isNotNull();
+        Assertions.assertThat(retrievedBooking.getStatus()).isEqualTo(BookingStatus.WAITING);
+        Assertions.assertThat(retrievedBooking.getBooker().getId()).isEqualTo(userId);
+        Assertions.assertThat(retrievedBooking.getItem().getId()).isEqualTo(itemId);
     }
 
     @Test
