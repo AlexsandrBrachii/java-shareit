@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingNewDto;
-import ru.practicum.shareit.exception.BadRequestException;
 import ru.practicum.shareit.utils.Utils;
 
 
