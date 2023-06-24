@@ -8,8 +8,8 @@ import ru.practicum.shareit.item.Item;
 import ru.practicum.shareit.item.ItemMapper;
 import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.user.UserMapper;
+import ru.practicum.shareit.utils.Utils;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,12 +27,10 @@ public class BookingMapper {
     }
 
     public static BookingDto bookingToDto(Booking booking) {
-        String pattern = "yyyy-MM-dd'T'HH:mm:ss";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return BookingDto.builder()
                 .id(booking.getId())
-                .start(booking.getStart().format(formatter))
-                .end(booking.getEnd().format(formatter))
+                .start(booking.getStart().format(Utils.dtFormatter))
+                .end(booking.getEnd().format(Utils.dtFormatter))
                 .status(booking.getStatus().name())
                 .booker(UserMapper.userToDto(booking.getBooker()))
                 .item(ItemMapper.itemToDto(booking.getItem()))
