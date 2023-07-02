@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  gateway:
+    build: gateway
+    container_name: gateway
+    depends_on:
+      - server
+    ports:
+      - "8080:8080"
+    environment:
+      #      - TZ=Europe/Moscow
+      - SHAREIT_SERVER_URL=http://server:9090
+
+  server:
+    build: server
+    container_name: server
+    depends_on:
+      - db
+    ports:
+      - "9090:9090"
+    environment:
+      #      - TZ=Europe/Moscow
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=iamroot
+
+  db:
+    image: postgres:15.2-alpine
+    ports:
+      - "6543:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=iamroot
