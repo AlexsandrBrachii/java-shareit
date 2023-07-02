@@ -10,19 +10,12 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.shareit.booking.Booking;
 import ru.practicum.shareit.booking.BookingStatus;
-import ru.practicum.shareit.item.Item;
-import ru.practicum.shareit.item.ItemMapper;
-import ru.practicum.shareit.item.ItemService;
 import ru.practicum.shareit.item.comment.Comment;
-import ru.practicum.shareit.item.comment.CommentDto;
-import ru.practicum.shareit.item.comment.CommentNewDto;
-import ru.practicum.shareit.item.dto.ItemBookingDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.user.User;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Transactional
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
