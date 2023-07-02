@@ -16,6 +16,7 @@ import ru.practicum.shareit.user.User;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -174,10 +175,10 @@ public class ItemControllerTest {
         ).andExpect(status().isOk());
     }
 
-    /*@Test
+    @Test
     void getAllItems_Normal() throws Exception {
         List<ItemBookingDto> items = List.of(itemBookingDto);
-        when(itemService.getAllItems(1L))
+        when(itemService.getAllItems(1L, 0, 20))
                 .thenReturn(items);
 
         mockMvc.perform(get("/items")
@@ -194,7 +195,7 @@ public class ItemControllerTest {
     @Test
     void findItems_Normal() throws Exception {
         List<ItemDto> items = List.of(addedItem, addedItem2);
-        when(itemService.findItems("name"))
+        when(itemService.findItems("name", 0, 20))
                 .thenReturn(items);
 
         mockMvc.perform(get("/items/search")
@@ -213,7 +214,7 @@ public class ItemControllerTest {
     @Test
     void findItems_EmptySearchText_ReturnEmptyList() throws Exception {
 
-        when(itemService.findItems("name"))
+        when(itemService.findItems("name", 0, 20))
                 .thenReturn(new ArrayList<>());
 
         mockMvc.perform(get("/items/search")
@@ -221,7 +222,7 @@ public class ItemControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
-    }*/
+    }
 
     @Test
     void createComment_Normal() throws Exception {

@@ -199,15 +199,15 @@ public class ItemServiceImplTest {
         verifyNoMoreInteractions(itemRepository);
     }
 
-    /*@Test
+    @Test
     void findItems_WithEmptyText_ReturnEmptyList() {
-        List<ItemDto> result = itemService.findItems("");
+        List<ItemDto> result = itemService.findItems("", 0, 20);
 
         Assertions.assertThat(result)
                 .hasSize(0).isEqualTo(new ArrayList<ItemDto>());
 
         verifyNoInteractions(itemRepository);
-    }*/
+    }
 
     @Test
     void createComment_WithEmptyCommentTest_ReturnBadRequestException() {

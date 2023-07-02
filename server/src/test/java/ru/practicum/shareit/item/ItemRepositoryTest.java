@@ -1,10 +1,16 @@
 package ru.practicum.shareit.item;
 
 import lombok.RequiredArgsConstructor;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.TestPropertySource;
+import ru.practicum.shareit.user.User;
+
+import java.util.List;
 
 
 @DataJpaTest
@@ -15,7 +21,7 @@ public class ItemRepositoryTest {
     private final TestEntityManager tem;
     private final ItemRepository itemRepository;
 
-    /*@Test
+    @Test
     void test_findItems_findTwoItems() {
 
         User user = User.builder().name("user").email("user@example.com").build();
@@ -30,7 +36,9 @@ public class ItemRepositoryTest {
                 .owner(user).available(false).build();
         tem.persist(item3);
 
-        List<Item> result1 = itemRepository.search("стул");
+        PageRequest pageRequest = PageRequest.of(0, 20);
+
+        List<Item> result1 = itemRepository.search("стул", pageRequest);
         Assertions.assertThat(result1).isNotNull().hasSize(2);
         Assertions.assertThat(result1)
                 .usingRecursiveComparison()
@@ -53,7 +61,9 @@ public class ItemRepositoryTest {
                 .owner(user).available(false).build();
         tem.persist(item3);
 
-        List<Item> result2 = itemRepository.search("табурет");
+        PageRequest pageRequest = PageRequest.of(0, 20);
+
+        List<Item> result2 = itemRepository.search("табурет", pageRequest);
         Assertions.assertThat(result2).isNotNull().hasSize(1);
         Assertions.assertThat(result2)
                 .usingRecursiveComparison()
@@ -75,7 +85,9 @@ public class ItemRepositoryTest {
                 .owner(user).available(false).build();
         tem.persist(item3);
 
-        List<Item> result2 = itemRepository.search("дрель");
+        PageRequest pageRequest = PageRequest.of(0, 20);
+
+        List<Item> result2 = itemRepository.search("дрель", pageRequest);
         Assertions.assertThat(result2).isNotNull().hasSize(0);
-    }*/
+    }
 }

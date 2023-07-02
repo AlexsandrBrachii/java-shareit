@@ -11,11 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.shareit.booking.Booking;
 import ru.practicum.shareit.booking.BookingStatus;
 import ru.practicum.shareit.item.comment.Comment;
+import ru.practicum.shareit.item.comment.CommentDto;
+import ru.practicum.shareit.item.comment.CommentNewDto;
+import ru.practicum.shareit.item.dto.ItemBookingDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.user.User;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Transactional
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -73,12 +77,12 @@ public class ItemIntegrationTest {
                 .isEqualTo(updater);
     }
 
-    /*@Test
+    @Test
     void getAllItems_Normal() {
         Long ownerId = owner.getId();
         Long bookerId = booker.getId();
 
-        List<ItemBookingDto> returnedList = (List<ItemBookingDto>) itemService.getAllItems(ownerId);
+        List<ItemBookingDto> returnedList = (List<ItemBookingDto>) itemService.getAllItems(ownerId, 0, 20);
         Assertions.assertThat(returnedList)
                 .isNotEmpty()
                 .hasSize(2);
@@ -86,7 +90,7 @@ public class ItemIntegrationTest {
         Assertions.assertThat(returnedList.get(1).getName()).isEqualTo(item2.getName());
 
 
-        List<ItemBookingDto> returnedList2 = (List<ItemBookingDto>) itemService.getAllItems(bookerId);
+        List<ItemBookingDto> returnedList2 = (List<ItemBookingDto>) itemService.getAllItems(bookerId, 0, 20);
         Assertions.assertThat(returnedList2).isEmpty();
     }
 
@@ -94,7 +98,7 @@ public class ItemIntegrationTest {
     void findItems_Normal() {
         String search = "стальной";
 
-        List<ItemDto> list = itemService.findItems(search);
+        List<ItemDto> list = itemService.findItems(search, 0, 20);
 
         Assertions.assertThat(list).isNotEmpty().hasSize(2);
         Assertions.assertThat(list.get(0).getName()).isEqualTo(item.getName());
@@ -105,7 +109,7 @@ public class ItemIntegrationTest {
     void findItems_EmptySearchText_Normal() {
         String search = "";
 
-        List<ItemDto> list = itemService.findItems(search);
+        List<ItemDto> list = itemService.findItems(search, 0, 20);
 
         Assertions.assertThat(list).isEmpty();
     }
@@ -122,7 +126,7 @@ public class ItemIntegrationTest {
                 .hasFieldOrPropertyWithValue("text", commentNewDto.getText())
                 .hasFieldOrPropertyWithValue("authorName", booker.getName());
 
-    }*/
+    }
 
     private void init() {
         owner = User.builder()
