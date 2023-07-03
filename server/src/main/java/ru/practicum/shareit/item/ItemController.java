@@ -8,7 +8,6 @@ import ru.practicum.shareit.item.comment.CommentNewDto;
 import ru.practicum.shareit.item.dto.ItemBookingDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class ItemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemDto createItem(@RequestHeader("X-Sharer-User-Id") Long userId, @Valid @RequestBody ItemDto itemDto) {
+    public ItemDto createItem(@RequestHeader("X-Sharer-User-Id") Long userId, @RequestBody ItemDto itemDto) {
         return itemService.createItem(userId, itemDto);
     }
 

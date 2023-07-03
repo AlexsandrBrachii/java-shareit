@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.Collection;
 
 /**
@@ -31,7 +30,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    private UserDto createUser(@Valid @RequestBody UserDto userDto) {
+    private UserDto createUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
     }
 
